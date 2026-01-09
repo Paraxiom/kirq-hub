@@ -1,0 +1,65 @@
+# KIRQ Hub Production Configuration
+# Uses environment variables for sensitive values
+
+[server]
+host = "0.0.0.0"
+port = 8001
+workers = 4
+
+[sources.qrng]
+# Real Toshiba QKD via ETSI 014 API
+enabled = true
+endpoint = "https://192.168.0.152/api/v1/keys"
+api_key = "${TOSHIBA_API_KEY}"  # Set in environment
+timeout_ms = 5000
+weight = 1.0
+verify_ssl = true
+cert_path = "${TOSHIBA_CERT_PATH}/client_alice_crt.pem"
+key_path = "${TOSHIBA_CERT_PATH}/client_alice_key.pem"
+ca_path = "${TOSHIBA_CERT_PATH}/ca_crt.pem"
+
+[sources.crypto4a]
+# Real Crypto4A HSM via local service
+enabled = true
+endpoint = "http://localhost:8106/v1/random"
+timeout_ms = 2000
+weight = 1.0
+
+[sources.decentralized]
+# Disabled until P2P network is ready
+enabled = false
+nodes = []
+min_nodes = 2
+timeout_ms = 3000
+weight = 1.0
+
+[sources.quantum_vault]
+# Local quantum entropy generator
+enabled = true
+weight = 2.0
+measurement_rounds = 3
+
+[mixing]
+algorithm = "hybrid_xor_hkdf"
+salt = "kirq-hub-production-v1"
+info = "quantum-entropy-mix"
+
+[delivery]
+max_entropy_age_seconds = 60
+require_proof = true
+enable_metrics = true
+
+[security]
+enable_falcon_signatures = true
+enable_stark_proofs = true
+tls_cert = "${TLS_CERT_PATH}"
+tls_key = "${TLS_KEY_PATH}"
+require_https = true
+
+[metrics]
+enabled = true
+port = 9090
+
+[logging]
+level = "${LOG_LEVEL}"
+format = "json"

@@ -1,0 +1,122 @@
+from etsi_qkd_014_client import QKD014Client
+import base64
+
+import os
+
+# Get the current directory of the script
+current_dir = os.path.dirname(os.path.abspath(__file__))
+data_path = os.path.join(current_dir, '..', 'certificate',  'IDQ')
+
+def get_key_id_alice(kme_hostname="192.168.101.202",
+                     client_cert=os.path.join(data_path, "ETSIA.pem"),
+                     client_key=os.path.join(data_path, "ETSIA-key.pem"),
+                     root_ca=os.path.join(data_path, "chrisCA.pem"),
+                     sae_id="ETSIB",
+                     password=None,
+                     force_insecure=True,
+                     **kwargs):
+
+    st = kwargs.get('st', None) # Application
+
+    # Create client for Alice
+    client_alice = QKD014Client(
+        kme_hostname,
+        client_cert,
+        client_key,
+        root_ca,
+        password=password,
+        force_insecure=force_insecure
+    )
+
+    if st is not None:
+        code, data = client_alice.get_status(sae_id)
+
+        col1, col2 = st.columns(2)
+        with col1:
+            st.markdown("## 🧘🏽‍♀️ Alice's client 🔐")
+            st.write(client_alice)
+        with col2:
+            st.markdown("### ⚙️ Client's status ")
+            st.write(data)
+        st.write('... Encrypt key 🐇')
+        st.markdown('---')
+    else:
+        print('Alice :', client_alice)
+
+    # Get a key
+    code, data = client_alice.get_key(sae_id)  # By default, this request one key of 256 bits
+    key_id = data.keys[0].key_id
+    key_alice = data.keys[0].key
+
+    if code != 200:
+        raise Exception(f"Key encryption failed. Error code {code} : {data}")
+
+    return key_alice, key_id
+
+def get_key_bob(key_id, kme_hostname="192.168.101.207",
+             client_cert=os.path.join(data_path, "ETSIB.pem"),
+             client_key=os.path.join(data_path, "ETSIB-key.pem"),
+             root_ca=os.path.join(data_path, "chrisCA.pem"),
+             sae_id="ETSIA",
+             password=None,
+             force_insecure=True,
+             **kwargs):
+
+
+    st = kwargs.get('st', None)  # Application
+
+    # Create client for Alice
+    client_bob = QKD014Client(
+        kme_hostname,
+        client_cert,
+        client_key,
+        root_ca,
+        password=password,
+        force_insecure=force_insecure
+    )
+
+
+    if st is not None:
+        code, data = client_bob.get_status(sae_id)
+
+        col1, col2 = st.columns(2)
+        with col1:
+            st.markdown("## 🧙‍♂️ Bob's client 🔓")
+            st.write(client_bob)
+        with col2:
+            st.markdown("### ⚙️ Client's status ")
+            st.write(data)
+        st.write('... Decrypt key 🕶️')
+        st.markdown('---')
+    else:
+        print('Bob client : ', client_bob)
+
+    # Get key
+    print(key_id)
+    code, data = client_bob.get_key_with_key_IDs(sae_id, [key_id])
+
+    if code != 200:
+        raise Exception(f"Key decryption failed. Error code {code} : {data}")
+
+    key_bob = data.keys[0].key
+
+    return key_bob
+
+
+# Test with Toshiba QKD system in Sherbrooke
+data_path = os.path.join(current_dir, '..', 'certificate',  'Toshiba', 'certs')
+
+alice_key = get_key_id_alice(kme_hostname="192.168.0.4",
+                 client_cert=os.path.join(data_path, "client_alice_crt.pem"),
+                 client_key=os.path.join(data_path, "client_alice_key.pem"),
+                 root_ca=os.path.join(data_path, "ca_crt.pem"),
+                 sae_id="bobsae")
+
+print(alice_key)
+
+
+print(get_key_bob(alice_key[1], kme_hostname="192.168.0.2",
+                 client_cert=os.path.join(data_path, "client_bob_crt.pem"),
+                 client_key=os.path.join(data_path, "client_bob_key.pem"),
+                 root_ca=os.path.join(data_path, "ca_crt.pem"),
+                 sae_id="alicesae"))

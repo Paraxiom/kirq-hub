@@ -1,0 +1,17 @@
+[Unit]
+Description=KIRQ to Droplet Entropy Pusher
+After=network.target kirq-hub.service
+Requires=kirq-hub.service
+
+[Service]
+Type=simple
+User=paraxiom
+WorkingDirectory=/home/paraxiom
+ExecStart=/usr/bin/python3 /home/paraxiom/kirq_to_droplet_pusher.py
+Restart=always
+RestartSec=30
+StandardOutput=append:/home/paraxiom/kirq_services.log
+StandardError=append:/home/paraxiom/kirq_services.log
+
+[Install]
+WantedBy=multi-user.target

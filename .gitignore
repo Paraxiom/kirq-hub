@@ -1,0 +1,50 @@
+# Rust build artifacts
+/target/
+**/*.rs.bk
+*.pdb
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+kirk_hub.log
+
+# Config (contains secrets)
+config.toml
+config_*_real.toml
+config_real.toml
+
+# Certificates
+*.pem
+*.key
+*.crt
+certificate/
+
+# Test outputs
+test_*.txt
+*.test
+
+# Backup files
+*.bak
+*~
+
+# Secret keys
+*_secret_key.json
+*_private_key.json
+
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Scripts with secrets
+*_real.sh
+start_*_real.sh

@@ -1,0 +1,71 @@
+[package]
+name = "kirq-hub"
+version = "0.3.0"
+edition = "2021"
+authors = ["Sylvain Cormier <sylvain@paraxiom.org>"]
+description = "Quantum-secure random number generation hub for the Kirq Network"
+repository = "https://github.com/Paraxiom/kirq-hub"
+license = "MIT"
+
+[[bin]]
+name = "kirq-hub"
+path = "src/main.rs"
+
+[dependencies]
+# Web framework
+actix-web = "4"
+actix-cors = "0.6"
+
+# Async runtime
+tokio = { version = "1", features = ["full"] }
+
+# HTTP client
+reqwest = { version = "0.11", features = ["blocking", "json", "rustls-tls"] }
+jsonrpsee = { version = "0.20", features = ["http-client"] }
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+toml = "0.8"
+
+# Cryptography
+ring = "0.17"
+blake3 = "1.5"
+hkdf = "0.12"
+sha2 = "0.10"
+hmac = "0.12"
+falcon = { version = "0.3", optional = true }
+winterfell = { version = "0.7", optional = true }  # For STARK proofs
+
+# Utilities
+base64 = "0.21"
+hex = "0.4"
+env_logger = "0.10"
+log = "0.4"
+chrono = { version = "0.4", features = ["serde"] }
+thiserror = "1.0"
+anyhow = "1.0"
+once_cell = "1.19"
+parking_lot = "0.12"
+async-trait = "0.1"
+futures = "0.3"
+getrandom = "0.2"
+
+# Metrics
+prometheus = { version = "0.13", optional = true }
+
+# QKD integration - use local path
+# qkd_client = { path = "../qkd_client", optional = true }
+
+[features]
+default = ["metrics"]
+# qkd = ["qkd_client"]
+quantum-proofs = ["falcon", "winterfell"]
+metrics = ["prometheus"]
+
+[dev-dependencies]
+criterion = "0.5"
+
+[[bench]]
+name = "mixing"
+harness = false

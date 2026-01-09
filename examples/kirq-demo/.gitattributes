@@ -1,0 +1,5 @@
+# Enforce LF line endings for all files
+* text=auto eol=lf
+
+# Specific file types can have different rules
+*.svg text eol=lf

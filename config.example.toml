@@ -1,0 +1,58 @@
+# Kirk Hub Configuration
+
+[server]
+host = "0.0.0.0"
+port = 8001
+workers = 4
+
+[sources.qrng]
+# QRNG source uses QKD (Quantum Key Distribution) keys as entropy
+# These are true quantum random numbers from the QKD hardware
+enabled = false
+endpoint = "https://qkd.sherbrooke.quantum/api/v1/keys"  # QKD API endpoint
+api_key = "your-qkd-api-key"
+timeout_ms = 5000
+weight = 1.0
+
+[sources.crypto4a]
+enabled = true
+endpoint = "http://localhost:8106/v1/random"
+timeout_ms = 1000
+weight = 1.0
+
+[sources.decentralized]
+enabled = false
+nodes = [
+  "https://node1.kirk.network/entropy",
+  "https://node2.kirk.network/entropy",
+  "https://node3.kirk.network/entropy"
+]
+min_nodes = 2
+timeout_ms = 3000
+weight = 1.0
+
+[sources.quantum_vault]
+# Pure quantum entropy through measurement collapse (no external dependencies)
+enabled = false
+weight = 2.0  # Higher weight due to quantum properties
+measurement_rounds = 3
+
+[mixing]
+algorithm = "hybrid_xor_hkdf"
+salt = "kirk-hub-v1"
+info = "quantum-entropy-mix"
+
+[delivery]
+max_entropy_age_seconds = 60
+require_proof = true
+enable_metrics = true
+
+[security]
+enable_falcon_signatures = false
+enable_stark_proofs = false
+tls_cert = "/path/to/cert.pem"
+tls_key = "/path/to/key.pem"
+
+[metrics]
+enabled = true
+port = 9090

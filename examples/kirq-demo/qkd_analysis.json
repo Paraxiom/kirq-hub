@@ -1,0 +1,478 @@
+{
+  "api_endpoints": [
+    "https://kirq.numana.tech/en/",
+    "https://myaccount.google.com/apppasswords",
+    "https://mysignins.microsoft.com/security-info"
+  ],
+  "qkd_functions": {
+    "etsi014.py:get_key_id_alice": {
+      "file": "./ETSI014/etsi014.py",
+      "name": "get_key_id_alice",
+      "args": [
+        "kme_hostname",
+        "client_cert",
+        "client_key",
+        "root_ca",
+        "sae_id",
+        "password",
+        "force_insecure"
+      ],
+      "docstring": null,
+      "line_number": 9
+    },
+    "etsi014.py:get_key_bob": {
+      "file": "./ETSI014/etsi014.py",
+      "name": "get_key_bob",
+      "args": [
+        "key_id",
+        "kme_hostname",
+        "client_cert",
+        "client_key",
+        "root_ca",
+        "sae_id",
+        "password",
+        "force_insecure"
+      ],
+      "docstring": null,
+      "line_number": 49
+    },
+    "help.py:display_decrypt_text_help": {
+      "file": "./src/help.py",
+      "name": "display_decrypt_text_help",
+      "args": [
+        "encryption_method"
+      ],
+      "docstring": null,
+      "line_number": 5
+    },
+    "help.py:display_decrypting_email_help": {
+      "file": "./src/help.py",
+      "name": "display_decrypting_email_help",
+      "args": [],
+      "docstring": null,
+      "line_number": 81
+    },
+    "app.py:send_encrypted_email": {
+      "file": "./src/app.py",
+      "name": "send_encrypted_email",
+      "args": [
+        "encryption_method"
+      ],
+      "docstring": null,
+      "line_number": 113
+    },
+    "app.py:decrypt_email": {
+      "file": "./src/app.py",
+      "name": "decrypt_email",
+      "args": [
+        "encryption_method"
+      ],
+      "docstring": null,
+      "line_number": 155
+    },
+    "app.py:decrypt_text": {
+      "file": "./src/app.py",
+      "name": "decrypt_text",
+      "args": [
+        "encryption_method"
+      ],
+      "docstring": null,
+      "line_number": 207
+    },
+    "demo_decrypt_message.py:get_decryption_inputs": {
+      "file": "./src/demo_decrypt_message.py",
+      "name": "get_decryption_inputs",
+      "args": [
+        "option"
+      ],
+      "docstring": null,
+      "line_number": 13
+    },
+    "demo_decrypt_message.py:manual_text_decryption": {
+      "file": "./src/demo_decrypt_message.py",
+      "name": "manual_text_decryption",
+      "args": [
+        "option"
+      ],
+      "docstring": null,
+      "line_number": 33
+    },
+    "demo_decrypt_message.py:decrypt_received_message": {
+      "file": "./src/demo_decrypt_message.py",
+      "name": "decrypt_received_message",
+      "args": [
+        "option"
+      ],
+      "docstring": null,
+      "line_number": 49
+    },
+    "demo_decrypt_message.py:display_decryption_choice": {
+      "file": "./src/demo_decrypt_message.py",
+      "name": "display_decryption_choice",
+      "args": [],
+      "docstring": null,
+      "line_number": 86
+    },
+    "establish_keys_qkd.py:save_keys_to_json": {
+      "file": "./src/establish_keys_qkd.py",
+      "name": "save_keys_to_json",
+      "args": [
+        "filename",
+        "new_data"
+      ],
+      "docstring": null,
+      "line_number": 25
+    },
+    "establish_keys_qkd.py:get_keys_alice": {
+      "file": "./src/establish_keys_qkd.py",
+      "name": "get_keys_alice",
+      "args": [
+        "num_keys",
+        "size",
+        "option"
+      ],
+      "docstring": "Generate multiple keys on Alice's side of the QKD systems.\n\n:param num_keys: number of keys to generate, by default 10.\n:param size: size of each key in bits, by default 256.\n:param option: 'qkd_sim' or 'qkd', for simulation, or with a real qkd system.\n:return: list of dictionaries with key_ID and key in hexadecimal format.",
+      "line_number": 57
+    },
+    "establish_keys_qkd.py:get_key_by_id": {
+      "file": "./src/establish_keys_qkd.py",
+      "name": "get_key_by_id",
+      "args": [
+        "key_list",
+        "key_id"
+      ],
+      "docstring": null,
+      "line_number": 146
+    },
+    "establish_keys_qkd.py:get_key_bob_from_id": {
+      "file": "./src/establish_keys_qkd.py",
+      "name": "get_key_bob_from_id",
+      "args": [
+        "key_id",
+        "option"
+      ],
+      "docstring": "Get a key on Bob's side of the QKD systems based on the provided key_id.\n\n:param key_id: identification number of the key from Alice's side.\n:param option: 'qkd_sim' or 'qkd', for simulation, or with a real qkd system.\n:return: dictionary with key_ID and corresponding key in hexadecimal format.",
+      "line_number": 156
+    },
+    "establish_keys_qkd.py:read_keys_from_file": {
+      "file": "./src/establish_keys_qkd.py",
+      "name": "read_keys_from_file",
+      "args": [
+        "file_path"
+      ],
+      "docstring": "Helper function to read keys from file ",
+      "line_number": 165
+    },
+    "demo_send_encrypted_email.py:html_cypher_text_qkd": {
+      "file": "./src/demo_send_encrypted_email.py",
+      "name": "html_cypher_text_qkd",
+      "args": [
+        "qkd_type",
+        "cypher_text_hex",
+        "selected_key_id"
+      ],
+      "docstring": null,
+      "line_number": 13
+    },
+    "demo_send_encrypted_email.py:get_qkd_sim_encryption": {
+      "file": "./src/demo_send_encrypted_email.py",
+      "name": "get_qkd_sim_encryption",
+      "args": [
+        "selected_key_info",
+        "body"
+      ],
+      "docstring": null,
+      "line_number": 152
+    },
+    "demo_send_encrypted_email.py:get_email_body_and_encrypt": {
+      "file": "./src/demo_send_encrypted_email.py",
+      "name": "get_email_body_and_encrypt",
+      "args": [
+        "option",
+        "from_email",
+        "body",
+        "to_email"
+      ],
+      "docstring": null,
+      "line_number": 169
+    },
+    "demo_send_encrypted_email.py:display_encryption_choice": {
+      "file": "./src/demo_send_encrypted_email.py",
+      "name": "display_encryption_choice",
+      "args": [],
+      "docstring": null,
+      "line_number": 207
+    },
+    "demo_decrypt_received_email.py:email_decryption": {
+      "file": "./src/demo_decrypt_received_email.py",
+      "name": "email_decryption",
+      "args": [
+        "f"
+      ],
+      "docstring": null,
+      "line_number": 20
+    },
+    "demo_decrypt_received_email.py:qkd_sim_decryption": {
+      "file": "./src/demo_decrypt_received_email.py",
+      "name": "qkd_sim_decryption",
+      "args": [
+        "f"
+      ],
+      "docstring": null,
+      "line_number": 46
+    },
+    "demo_decrypt_received_email.py:pqc_decryption": {
+      "file": "./src/demo_decrypt_received_email.py",
+      "name": "pqc_decryption",
+      "args": [
+        "f"
+      ],
+      "docstring": null,
+      "line_number": 72
+    },
+    "demo_decrypt_received_email.py:decrypt_received_message": {
+      "file": "./src/demo_decrypt_received_email.py",
+      "name": "decrypt_received_message",
+      "args": [
+        "option"
+      ],
+      "docstring": null,
+      "line_number": 88
+    },
+    "demo_decrypt_received_email.py:display_decryption_choice": {
+      "file": "./src/demo_decrypt_received_email.py",
+      "name": "display_decryption_choice",
+      "args": [],
+      "docstring": null,
+      "line_number": 98
+    },
+    "pqc_encryption.py:get_pqc_encryption": {
+      "file": "./src/pqc_encryption.py",
+      "name": "get_pqc_encryption",
+      "args": [
+        "message",
+        "kem_algo",
+        "filepath"
+      ],
+      "docstring": null,
+      "line_number": 62
+    },
+    "pqc_encryption.py:get_pqc_decryption": {
+      "file": "./src/pqc_encryption.py",
+      "name": "get_pqc_decryption",
+      "args": [
+        "message_package",
+        "filepath"
+      ],
+      "docstring": null,
+      "line_number": 84
+    }
+  },
+  "data_structures": {
+    "app.py:dict@24": {
+      "file": "./src/app.py",
+      "type": "dictionary",
+      "content": "Dict(keys=[Constant(value='Simulated QKD'), Constant(value='Real QKD'), Constant(value='QKD via Basejump'), Constant(value='PQC')], values=[Constant(value='qkd_sim'), Constant(value='qkd_real'), Constant(value='basejump_qkd'), Constant(value='pqc')])",
+      "line_number": 24
+    },
+    "app.py:dict@190": {
+      "file": "./src/app.py",
+      "type": "dictionary",
+      "content": "Dict(keys=[Constant(value='key_id')], values=[Name(id='key_id', ctx=Load())])",
+      "line_number": 190
+    },
+    "demo_decrypt_message.py:dict@17": {
+      "file": "./src/demo_decrypt_message.py",
+      "type": "dictionary",
+      "content": "Dict(keys=[Constant(value='key_id'), Constant(value='cypher_hex')], values=[Name(id='key_id', ctx=Load()), Name(id='cypher_hex', ctx=Load())])",
+      "line_number": 17
+    },
+    "establish_keys_qkd.py:dict@109": {
+      "file": "./src/establish_keys_qkd.py",
+      "type": "dictionary",
+      "content": "Dict(keys=[Constant(value='key_ID'), Constant(value='key')], values=[Name(id='key_id', ctx=Load()), Name(id='hex_key', ctx=Load())])",
+      "line_number": 109
+    },
+    "establish_keys_qkd.py:dict@81": {
+      "file": "./src/establish_keys_qkd.py",
+      "type": "dictionary",
+      "content": "Dict(keys=[Constant(value='key_ID'), Constant(value='key')], values=[Name(id='key_id', ctx=Load()), Name(id='hex_key', ctx=Load())])",
+      "line_number": 81
+    },
+    "establish_keys_qkd.py:dict@135": {
+      "file": "./src/establish_keys_qkd.py",
+      "type": "dictionary",
+      "content": "Dict(keys=[Constant(value='key_ID'), Constant(value='key')], values=[Name(id='key_id', ctx=Load()), Name(id='hex_key', ctx=Load())])",
+      "line_number": 135
+    },
+    "demo_send_encrypted_email.py:dict@188": {
+      "file": "./src/demo_send_encrypted_email.py",
+      "type": "dictionary",
+      "content": "Dict(keys=[Constant(value='qkd_sim'), Constant(value='qkd_real'), Constant(value='basejump_qkd'), Constant(value='pqc')], values=[Constant(value='simulated QKD'), Constant(value='real QKD'), Constant(value='QKD via Basejump'), Constant(value='PQC')])",
+      "line_number": 188
+    },
+    "pqc_encryption.py:dict@36": {
+      "file": "./src/pqc_encryption.py",
+      "type": "dictionary",
+      "content": "Dict(keys=[Constant(value='public_key'), Constant(value='secret_key')], values=[Name(id='public_key_sender_b64', ctx=Load()), Name(id='secret_key_sender_b64', ctx=Load())])",
+      "line_number": 36
+    },
+    "emails.py:dict@160": {
+      "file": "./src/emails.py",
+      "type": "dictionary",
+      "content": "Dict(keys=[Constant(value='cypher_hex'), Constant(value='key_id')], values=[Name(id='cypher_text_hex', ctx=Load()), Name(id='key_id', ctx=Load())])",
+      "line_number": 160
+    }
+  },
+  "auth_methods": [],
+  "error_patterns": [
+    {
+      "file": "./analyse.py",
+      "error_type": "IndexError",
+      "line_number": 48
+    },
+    {
+      "file": "./analyse.py",
+      "error_type": "Exception",
+      "line_number": 58
+    },
+    {
+      "file": "./analyse.py",
+      "error_type": "Exception",
+      "line_number": 32
+    },
+    {
+      "file": "./src/app.py",
+      "error_type": "Exception",
+      "line_number": 177
+    },
+    {
+      "file": "./src/app.py",
+      "error_type": "Exception",
+      "line_number": 228
+    },
+    {
+      "file": "./src/demo_decrypt_message.py",
+      "error_type": "KeyError",
+      "line_number": 77
+    },
+    {
+      "file": "./src/demo_decrypt_message.py",
+      "error_type": "ValueError",
+      "line_number": 79
+    },
+    {
+      "file": "./src/demo_decrypt_message.py",
+      "error_type": "Exception",
+      "line_number": 81
+    },
+    {
+      "file": "./src/establish_keys_qkd.py",
+      "error_type": "json.JSONDecodeError",
+      "line_number": 33
+    },
+    {
+      "file": "./src/establish_keys_qkd.py",
+      "error_type": "json.JSONDecodeError",
+      "line_number": 173
+    },
+    {
+      "file": "./src/pqc_encryption.py",
+      "error_type": "json.JSONDecodeError",
+      "line_number": 19
+    },
+    {
+      "file": "./src/emails.py",
+      "error_type": "Exception",
+      "line_number": 179
+    },
+    {
+      "file": "./src/emails.py",
+      "error_type": "Exception",
+      "line_number": 96
+    }
+  ],
+  "imports": {
+    "analyse.py": [
+      "os",
+      "json",
+      "sys",
+      "collections.defaultdict"
+    ],
+    "etsi014.py": [
+      "etsi_qkd_014_client.QKD014Client",
+      "base64",
+      "os"
+    ],
+    "help.py": [
+      "streamlit"
+    ],
+    "app.py": [
+      "streamlit",
+      "re",
+      "demo_send_encrypted_email.get_email_body_and_encrypt",
+      "demo_send_encrypted_email.send_email",
+      "demo_decrypt_received_email.decrypt_received_message",
+      "demo_decrypt_message.manual_text_decryption",
+      "help.display_decrypt_text_help",
+      "help.display_decrypting_email_help",
+      "help.display_sending_email_help",
+      "os",
+      "base64"
+    ],
+    "demo_decrypt_message.py": [
+      "Crypto.Cipher.AES",
+      "Crypto.Util.Padding.unpad",
+      "pqc_encryption.get_pqc_decryption",
+      "establish_keys_qkd.get_key_bob_from_id",
+      "os"
+    ],
+    "establish_keys_qkd.py": [
+      "pathlib.Path",
+      "base64",
+      "json",
+      "os",
+      "sys",
+      "ETSI014.etsi014.get_key_id_alice",
+      "ETSI014.etsi014.get_key_bob"
+    ],
+    "demo_send_encrypted_email.py": [
+      "establish_keys_qkd.get_keys_alice",
+      "pqc_encryption.get_pqc_encryption",
+      "emails.send_email",
+      "Crypto.Cipher.AES",
+      "Crypto.Util.Padding.pad",
+      "os"
+    ],
+    "demo_decrypt_received_email.py": [
+      "emails.read_email",
+      "pqc_encryption.get_pqc_decryption",
+      "establish_keys_qkd.get_key_bob_from_id",
+      "Crypto.Cipher.AES",
+      "Crypto.Util.Padding.unpad",
+      "functools",
+      "os",
+      "sys",
+      "ETSI014.etsi014.get_key_bob"
+    ],
+    "pqc_encryption.py": [
+      "oqs",
+      "Crypto.Cipher.AES",
+      "Crypto.Util.Padding.pad",
+      "Crypto.Util.Padding.unpad",
+      "json",
+      "base64",
+      "os"
+    ],
+    "emails.py": [
+      "smtplib",
+      "email.mime.multipart.MIMEMultipart",
+      "email.mime.text.MIMEText",
+      "imaplib",
+      "email",
+      "getpass.getpass",
+      "pwinput.pwinput",
+      "bs4.BeautifulSoup"
+    ]
+  }
+}

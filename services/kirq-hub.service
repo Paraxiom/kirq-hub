@@ -1,0 +1,21 @@
+[Unit]
+Description=KIRQ Quantum Entropy Hub
+After=network.target
+
+[Service]
+Type=simple
+User=paraxiom
+WorkingDirectory=/home/paraxiom/quantum-rng-kirq-hub
+Environment="KIRK_PUSH_ENABLED=true"
+Environment="KIRK_PUSH_ENDPOINT=https://api.paraxiom.org/api/quantum/entropy/push"
+Environment="KIRK_PUSH_INTERVAL=30"
+Environment="KIRK_HMAC_SECRET=c1d9dedf4336365abea1bbe53fe1538c00676691fce6e262b1aec773d577cab3"
+ExecStartPre=/bin/bash -c 'curl -s http://localhost:8106/v1/random > /dev/null 2>&1 || echo "Warning: Crypto4A HSM not responding"'
+ExecStart=/home/paraxiom/quantum-rng-kirq-hub/target/release/quantum-rng-kirq-hub --config config_kirk_real.toml
+Restart=always
+RestartSec=10
+StandardOutput=append:/home/paraxiom/kirq_services.log
+StandardError=append:/home/paraxiom/kirq_services.log
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,6 @@
+beautifulsoup4==4.12.3
+pwinput==1.0.3
+pycryptodome==3.20.0
+streamlit==1.38.0
+etsi-qkd-014-client==0.9.0
+setuptools>=70.0
